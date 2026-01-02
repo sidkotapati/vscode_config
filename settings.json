@@ -1,0 +1,45 @@
+{
+    // Point vscode-neovim to your Neovim binary (macOS / Homebrew path here)
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim", // replace with your nvim path
+
+    // Map fast key-chords in insert mode (handled by vscode-neovim)
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            // Run a Lua snippet through the extension
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    // Exit insert mode (like pressing Esc)
+                    "code.action('vscode-neovim.escape')",
+                    // Save the active file
+                    "code.action('workbench.action.files.save')"
+                ]
+            ]
+        }
+    },
+
+    // Reduce editor chrome: no tabs, no preview tabs, no minimap
+    "workbench.editor.showTabs": "none",
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+
+    // Performance/isolation: run vscode-neovim extension in a separate extension host "slot"
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+
+    // Theme + autosave convenience
+    "workbench.colorTheme": "Tokyo Night Dark",
+    "files.autoSave": "afterDelay",
+
+    // Zen Mode preferences (centered layout, hide status bar, keep line numbers)
+    "zenMode.fullScreen": true,
+    "zenMode.centerLayout": true,
+    "zenMode.hideStatusBar": true,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.showTabs": "none",
+
+    // Keep git remotes fresh automatically
+    "git.autofetch": true
+}
